@@ -5,7 +5,7 @@ def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.push("斎藤")
+  names << "斎藤"
 
   puts names
 
@@ -66,7 +66,7 @@ def q6
 
   numbers1.each do |number|
 	number = number * 10
-	numbers2.push(number)
+	numbers2 << number
   end
 
   p numbers2
@@ -94,7 +94,7 @@ def q8
 
   programming_languages.each.with_index do |language,i|
 	programming_languages[i] = language.capitalize
-	upper_case_programming_languages.push(language.upcase)
+	upper_case_programming_languages << language.upcase
   end
 
   # 以下は変更しないで下さい
