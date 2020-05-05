@@ -168,10 +168,10 @@ end
 class UserQ17
   # 以下に回答を記載
 
-  def initialize(name:, age:, gender:)
-	@name = name
-	@age = age
-	@gender = gender
+  def initialize(**info)
+	@name = info[:name]
+	@age = info[:age]
+	@gender = info[:gender]
   end
 
   def info
@@ -251,19 +251,23 @@ class Zoo
 
   def initialize(name:, entry_fee:)
 	@name = name
-	@fee = entry_fee
+	@entry_fee = entry_fee
   end
 
   def info_entry_fee(user)
-	if user.age <= 5
-		puts "#{user.name}さんの入場料金は #{@fee[:infant]} 円です。"
-	elsif user.age <= 12
-		puts "#{user.name}さんの入場料金は #{@fee[:children]} 円です。"
-	elsif user.age <= 64
-		puts "#{user.name}さんの入場料金は #{@fee[:adult]} 円です。"
+	case user.age
+	when 0..5 then
+		fee = @entry_fee[:infant]
+	when 6..12 then
+		fee = @entry_fee[:children]
+	when 13..64 then
+		fee = @entry_fee[:adult]
 	else
-		puts "#{user.name}さんの入場料金は #{@fee[:senior]} 円です。"
+		fee = @entry_fee[:senior]
 	end
+	
+	puts "#{user.name}さんの入場料金は #{fee} 円です。"
+
   end
 
 end
